@@ -1,0 +1,28 @@
+name: Auto Update Catalog
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Запуск каждые 6 часов
+  workflow_dispatch: # Позволяет запускать обновление вручную кнопкой на GitHub
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Проверяем код репозитория
+        uses: actions/checkout@v4
+
+      - name: Устанавливаем Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Запускаем скрипт обновления
+        run: node script.js # Скрипт-парсер, который мы напишем следующим шагом
+
+      - name: Сохраняем изменения на сайт
+        run: |
+          git config --global user.name "Robot-Updater"
+          git config --global user.email "bot@github.com"
+          git add movies.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление базы дорам" && git push)
