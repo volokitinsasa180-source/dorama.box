@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "title": "Истинная красота",
+    "orig_title": "True Beauty",
+    "year": 2020,
+    "genre": ["Комедия", "Мелодрама"],
+    "poster": "https://images.justwatch.com/poster/241832132/s332/true-beauty.webp",
+    "description": "История о старшекласснице, которая благодаря макияжу становится самой популярной девушкой в школе.",
+    "player_url": "https://kodik.biz/serial/34567/iframe"
+  },
+  {
+    "id": "2",
+    "title": "Алхимия душ",
+    "orig_title": "Alchemy of Souls",
+    "year": 2022,
+    "genre": ["Фэнтези", "Романтика"],
+    "poster": "https://images.justwatch.com/poster/285437890/s332/alchemy-of-souls.webp",
+    "description": "Судьбы людей переплетаются из-за магии, которая позволяет менять души местами.",
+    "player_url": "https://kodik.biz/serial/45678/iframe"
+  }
+]
