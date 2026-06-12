@@ -1,7 +1,7 @@
 let doramaData = [];
 
 // 1. Загружаем данные из movies.json
-fetch('movies.json')
+fetch('./movies.json')
     .then(response => response.json())
     .then(data => {
         doramaData = data;
