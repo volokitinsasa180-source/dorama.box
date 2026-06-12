@@ -8,14 +8,21 @@ fetch('./movies.json')
         displayDoramas(doramaData);
     });
 
-// 2. Функция вывода карточек на экран
+// Функция вывода карточек на экран
 function displayDoramas(list) {
     const catalog = document.getElementById('catalog');
-    catalog.innerHTML = ''; // Очищаем каталог перед выводом
+    catalog.innerHTML = ''; 
+
+    if (list.length === 0) {
+        catalog.innerHTML = '<p style="padding: 20px;">Дорамы не найдены.</p>';
+        return;
+    }
 
     list.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
+        
+        // Внимательно посмотри: здесь используются именно косые кавычки `
         card.innerHTML = `
             <img src="${item.poster}" alt="${item.title}">
             <div class="card-info">
@@ -23,7 +30,7 @@ function displayDoramas(list) {
                 <p>${item.year} | ${item.genre.join(', ')}</p>
             </div>
         `;
-        // При клике открываем плеер
+        
         card.addEventListener('click', () => openPlayer(item));
         catalog.appendChild(card);
     });
