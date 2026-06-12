@@ -16,13 +16,13 @@ function displayDoramas(list) {
     list.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = 
+        card.innerHTML = '
             <img src="${item.poster}" alt="${item.title}">
             <div class="card-info">
                 <h3>${item.title}</h3>
                 <p>${item.year} | ${item.genre.join(', ')}</p>
             </div>
-        ;
+        ';
         // При клике открываем плеер
         card.addEventListener('click', () => openPlayer(item));
         catalog.appendChild(card);
