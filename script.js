@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // Используем публичный рабочий токен Kodik для теста
-const API_URL = "https://kodikapi.com/list?token=8667dc994f30508cb56d091e70e95a94&types=serial&genres=дорама&with_material_data=true&limit=50".replace('kodikapi.com', 'api.kodik-storage.com');
+const API_URL = "https://api.kodik-storage.com/list?token=8667dc994f30508cb56d091e70e95a94&types=serial&genres=дорама&with_material_data=true&limit=50";
 
 async function fetchNewDoramas() {
     try {
