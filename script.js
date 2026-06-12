@@ -3,8 +3,8 @@ const KODIK_TOKEN = '8343bc7359554030ea05d90c2d40fcb8';
 // 1. Функция загрузки дорам
 async function loadDramas(title = '') {
     const url = title 
-    ? `https://kodik.biz{KODIK_TOKEN}&title=${encodeURIComponent(title)}&limit=12`
-    : `https://kodik.biz{KODIK_TOKEN}&types=foreign-serial,foreign-movie&sort=updated_at&limit=12`;
+    ? `https://kodikapi.com{KODIK_TOKEN}&title=${encodeURIComponent(title)}&limit=12`
+    : `https://kodikapi.com{KODIK_TOKEN}&types=foreign-serial,foreign-movie&sort=updated_at&limit=12`;
     
     try {
         const response = await fetch(url);
