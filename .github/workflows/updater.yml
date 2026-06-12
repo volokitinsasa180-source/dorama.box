@@ -3,23 +3,27 @@ name: Auto Update Catalog
 on:
   schedule:
     - cron: '0 */6 * * *' # Запуск каждые 6 часов
-  workflow_dispatch: # Позволяет запускать обновление вручную кнопкой на GitHub
+  workflow_dispatch: # Кнопка ручного запуска
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # ВАЖНО: Этот шаг скачивает script.js, index.html и все файлы в виртуальную машину робота
       - name: Проверяем код репозитория
         uses: actions/checkout@v4
 
+      # Этот шаг включает поддержку JavaScript (Node.js)
       - name: Устанавливаем Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # Теперь этот шаг сработает, потому что файл script.js уже скачан на предыдущем этапе!
       - name: Запускаем скрипт обновления
-        run: node script.js # Скрипт-парсер, который мы напишем следующим шагом
+        run: node script.js
 
+      # Этот шаг сохраняет новые дорамы на твой сайт
       - name: Сохраняем изменения на сайт
         run: |
           git config --global user.name "Robot-Updater"
