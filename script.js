@@ -1,26 +1,25 @@
 const KODIK_TOKEN = '8343bc7359554030ea05d90c2d40fcb8';
 
-// 1. Функция загрузки дорам
 async function loadDramas(title = '') {
-   const url = title 
-    ? `https://kodik.biz{KODIK_TOKEN}&title=${encodeURIComponent(title)}&limit=12`
-    : `https://kodik.biz{KODIK_TOKEN}&types=foreign-serial,foreign-movie&sort=updated_at&limit=12`; 
-    
+    const url = title 
+        ? 'https://kodik.biz/list?token=' + KODIK_TOKEN + '&title=' + encodeURIComponent(title) + '&limit=12'
+        : 'https://kodik.biz/list?token=' + KODIK_TOKEN + '&types=foreign-serial&genres=' + encodeURIComponent('дорама') + '&sort=updated_at&limit=12';
+
     try {
+        console.log("Запускаем запрос к API Kodik...");
         const response = await fetch(url);
         const data = await response.json();
-        
-        // Проверяем, существует ли document (запущен ли код в браузере)
-        if (typeof document !== 'undefined' && data.results && data.results.length > 0) {
-            displayDramas(data.results);
-        } else if (typeof document !== 'undefined') {
-            document.getElementById('catalog').innerHTML = '<p>Ничего не найдено</p>';
+
+        if (data && data.results) {
+            console.log("Успешно получено дорам: " + data.results.length);
+            return data.results;
         } else {
-            // Если запущено в Node.js — просто выводим результат в общую консоль сборщика
-            console.log(`[Node.js] Успешный тест API. Найдено релизов: ${data.results?.length || 0}`);
+            console.log("Сервер вернул пустой результат.");
+            return [];
         }
     } catch (error) {
         console.error("Ошибка API Kodik:", error);
+        return [];
     }
 }
 
